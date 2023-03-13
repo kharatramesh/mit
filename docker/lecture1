@@ -70,3 +70,23 @@
    91  clear
    92  docker exec -it c1 bash
    93  curl "172.17.0.2":80
+   
+      84  docker ps -a
+   85  docker run -d --name=c1 httpd
+   86  docker ps
+   87  docker inspect c1 | greep -i ipaddress
+   88  docker inspect c1 | grep -i ipaddress
+   89  curl "172.17.0.2"
+   90  curl "172.17.0.2":80
+   91  clear
+   92  docker exec -it c1 bash
+   93  curl "172.17.0.2":80
+   94  history
+   95  clear
+   96  docker run -d --name=v1 -p 9090:80 kharatramesh/vadapavimages:vadapav
+   97  docker run -d --name=v2 -p 9091:80 kharatramesh/vadapavimages:biryani
+   98  history
+   99  clear
+  100  docker run -d --name=db1 -e MYSQL_ROOT_PASSWORD=123 -e MYSQL_DATABASE=mit -p 3309:3306 mysql
+  101  docker exec -it db1 bash
+
