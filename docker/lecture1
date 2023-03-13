@@ -1,0 +1,17 @@
+ 12  docker pull httpd
+   13  docker pull kharatramesh/vadapavimages:vadapav
+   14  docker images
+   15  docker container create --name=vadapav -p 9090:80 kharatramesh/vadapavimages
+   16  docker container create --name=vadapav -p 9090:80 kharatramesh/vadapavimages:vadapav
+   17  docker ps -a
+   18  docker container create --name=vadapav1 -p 9091:80 kharatramesh/vadapavimages:vadapav
+   19  docker container create --name=vadapav2 -p 9092:80 kharatramesh/vadapavimages:vadapav
+   20  docker ps -a
+   21  docker start vadapav
+   22  docker start vadapav1
+   23  docker start vadapav2
+   24  docker ps -a
+   25  clear
+   26  docker container create --name=vadapav5 -p 9095:80 kharatramesh/vadapavimages:misalpav
+   27  docker container create --name=vadapav6 -p 9096:80 kharatramesh/vadapavimages:pavbhaji
+   28  docker start vadapav6
