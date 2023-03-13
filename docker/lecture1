@@ -15,3 +15,58 @@
    26  docker container create --name=vadapav5 -p 9095:80 kharatramesh/vadapavimages:misalpav
    27  docker container create --name=vadapav6 -p 9096:80 kharatramesh/vadapavimages:pavbhaji
    28  docker start vadapav6
+ 32  docker ps -a
+   33  docker rm -f vadapav1
+   34  docker rm -f vadapav2
+   35  docker rm -f vadapav
+   36  docker rm -f vadapav6
+   37  clear
+   38  docker container create -d --name=c1 httpd
+   39  docker container create -d --name c1 httpd
+   40  docker create container -d --name c1 httpd
+   41  docker container create -d --name c1 http
+   42  docker container create --name=c1 httpd
+   43  docker start c1
+   44  docker stop c1
+   45  docker start c1
+   46  docker rm -f c1
+   47  clear
+   48  docker run -d --name=c11 httpd
+   49  docker run -d --name=c12 httpd
+   50  docker ps -a
+   51  docker run --name=c13 httpd
+   52  docker ps -a
+   53  docker run -d --name=c14 httpd
+   54  clear
+   55  docker ps -a -q
+   56  docker rm -f $(docker ps -a -q)
+   57  clear
+   58  docker images
+   59  docker rmi httpd
+   60  clear
+   61  docker search httpd
+   62  clear
+   63  docker search mysql
+   64* docker search php
+   65  history
+   66  clear
+   67  docker search mysql --limit 5
+   68  docker search mongo --limit 5
+   69  clear
+
+   78  clear
+   79  docker search mysql -f is-official=true
+   80  docker search mysql -f is-official=true -f starts=599
+   81  docker search mysql -f is-official=true -f stars=599
+   82  docker search mysql -f is-official=true -f stars=700
+   83  clear
+   84  docker ps -a
+   85  docker run -d --name=c1 httpd
+   86  docker ps
+   87  docker inspect c1 | greep -i ipaddress
+   88  docker inspect c1 | grep -i ipaddress
+   89  curl "172.17.0.2"
+   90  curl "172.17.0.2":80
+   91  clear
+   92  docker exec -it c1 bash
+   93  curl "172.17.0.2":80
