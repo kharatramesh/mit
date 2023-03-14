@@ -72,4 +72,9 @@ root@ip-172-31-34-195:/vadapav#
  docker network ls
  ================================================
  docker run -d --name=c1 --network net1 --ip 100.100.0.100 --memory=15M --cpus="00000001" --hostname=samosa.mit.com --dns=8.8.8.8 httpd
- 
+ -----------------------------------
+  2  curl -SL https://github.com/docker/compose/releases/download/v2.16.0/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
+    3  ls
+    4  chmod a+x /usr/local/bin/docker-compose
+    5  docker-compose
+
