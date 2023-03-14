@@ -1,0 +1,52 @@
+ 11  mkdir /vadapav
+   12  cd /vadapav/
+   13  touch 1.df
+   14  touch one.dockerfile
+   15  ls
+   16  vi 1.df
+   17  touch mit.tar
+   18  echo "This is My First Dockerfile" > index.html
+   19  cat 1.df
+   20  touch 1.txt
+   21  history
+   22  vi 1.df
+   23  cat 1.df
+   24  vi 1.
+   25  vi 1.df
+   26  clear
+   27  docker images
+   28  ls
+   29  docker build . -f 1.df -t application:v1.0
+   30  docker images
+   31  clear
+   32  docker images
+   33  docker run -d --name=a1 -p 9090:80 application:v1.0
+   34  docker tag application:v1.0 kharatramesh/mit:webserverv1.0
+   35  docker images
+   36  docker login
+   37  docker push kharatramesh/mit:webserverv1.0
+   38  clear
+   39  vi db1.df
+   40  docker build . -f db1.df -t kharatramesh/mit:databasev1.0
+   41  docker images
+   42  docker push kharatramesh/mit:databasev1.0
+=============================================================
+root@ip-172-31-34-195:/vadapav# cat 1.df
+FROM centos:7
+WORKDIR /samosa
+WORKDIR vadapav
+WORKDIR /A
+WORKDIR /B
+COPY 1.txt /samosa
+ADD https://the.earth.li/~sgtatham/putty/latest/w64/putty-64bit-0.78-installer.msi /samosa/vadapav
+ADD mit.tar /A
+RUN yum install httpd -y && yum install tree -y
+COPY index.html /var/www/html
+RUN systemctl enable httpd
+CMD ["httpd","-D","FOREGROUND"]
+=========================================================================
+
+root@ip-172-31-34-195:/vadapav# cat db1.df
+FROM mysql
+env MYSQL_DATABASE mit
+root@ip-172-31-34-195:/vadapav#
