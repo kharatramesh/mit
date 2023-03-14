@@ -67,4 +67,9 @@ root@ip-172-31-34-195:/vadapav#
    63  ls
    64  docker run -d --name=db1 -p 3309:3306 -v /data:/var/lib/mysql -e MYSQL_DATABASE=mit -e MYSQL_ROOT_PASSWORD=123 mysql
    65  docker exec -it db1 bash
-
+==================================================
+ docker network create --driver=bridge --subnet=100.100.0.0/24 net1
+ docker network ls
+ ================================================
+ docker run -d --name=c1 --network net1 --ip 100.100.0.100 --memory=15M --cpus="00000001" --hostname=samosa.mit.com --dns=8.8.8.8 httpd
+ 
