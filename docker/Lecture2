@@ -50,3 +50,21 @@ root@ip-172-31-34-195:/vadapav# cat db1.df
 FROM mysql
 env MYSQL_DATABASE mit
 root@ip-172-31-34-195:/vadapav#
+------------------------------------------------
+
+ 51  mkdir /data
+   52  cd /data/
+   53  ls
+   54  cd ..
+   55  docker run -d --name=db1 -p 3309:3306 -v /data:/var/lib/mysql -e MYSQL_DATABASE=mit -e MYSQL_ROOT_PASSWORD=123 mysql
+   56  docker ps -a
+   57  clear
+   58  docker exec -it db1 bash
+   59  clear
+   60  docker ps -a
+   61  docker rm -f db1
+   62  cd /data
+   63  ls
+   64  docker run -d --name=db1 -p 3309:3306 -v /data:/var/lib/mysql -e MYSQL_DATABASE=mit -e MYSQL_ROOT_PASSWORD=123 mysql
+   65  docker exec -it db1 bash
+
