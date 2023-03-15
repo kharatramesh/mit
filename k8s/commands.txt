@@ -1,0 +1,82 @@
+root@master:/yamls# cat pod1.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: p1
+  namespace: trainer
+  labels:
+    disk: ssd
+    region: mumbai
+    app: prod
+    customer: google
+  annotations:
+    image-version: v1.0
+spec:
+  containers:
+  - name: c1
+    image: nginx
+-----------------------------------------------
+
+  31  watch kubectl get nodes
+   32  clear
+   33  kubectl get nodes
+   34  kubectl run pod1 --image=httpd
+   35  kubectl get pods
+   36  kubectl get pods -o wide
+   37  curl 10.244.2.2
+   38  kubectl run pod2 --image=httpd
+   39  kubectl run pod3 --image=httpd
+   40  kubectl run pod4 --image=httpd
+   41  kubectl run pod5 --image=httpd
+   42  kubectl get pods -o wide
+   43  w
+   44  history
+   45  w
+   46  clear
+   47  kubectl create namespace trainer
+   48  kubectl create namespace ibm
+   49  kubectl create namespace google
+   50  kubectl create namespace tata
+   51  kubectl create namespace info
+   52  kubectl get ns
+   53  kubectl get nodes
+   54  kubectl get pods
+   55  w
+   56  clear
+   57  kubectl run app1 --image=nginx -n trainer
+   58  history
+   59  clear
+   60  kubectl get pods -n trainer
+   61  kubectl delete pod app1 -n trainer
+   62  kubectl get pods -n trainer
+   63  kubectl delete pod app10 -n trainer
+   64  kubectl get pods -n trainer
+   65  kubectl describe pod app2 -n trainer
+   66  hstory
+   67  history
+   68  kubectl exec -it app2 -n trainer bash
+   69  clear
+   70  mkdir /yamls
+   71  cd /yamls/
+   72  ls
+   73  touch pod1.yaml
+   74  vi pod1.yaml
+   75  kubectl create -f pod1.yaml
+   76  kubectl get pods -n trainer
+   77  clear
+   78  kubectl delete -f pod1.yaml
+   79  vi pod1.yaml
+   80  kubectl create -f pod1.yaml
+   81  kubectl get pods -n trainer
+   82  kubectl delete ns trainer
+   83  clear
+   84  kubectl create ns trainer
+   85  clear
+   86  kubectl create deployment app1 --image=httpd -n trainer
+   87  kubectl delete pod app1-65d6849598-zggz7 -n trainer
+   88  kubectl delete pod app1-65d6849598-6l9vg -n trainer
+   89  kubectl scale deployment/app1 --replicas=5 -n trainer
+   90  kubectl scale deployment/app1 --replicas=11 -n trainer
+   91  kubectl scale deployment/app1 --replicas=1 -n trainer
+   92  kubectl delete pod app1-65d6849598-v79mp -n trainer
+   93  cat pod1.yaml
