@@ -1,0 +1,52 @@
+   31  kubectl  create ns trainer
+   32  kubectl run pod1 --image=httpd -n trainer
+   33  kubectl create deployment app1 --image=httpd -n trainer
+   34  kubectl get deployment -n trainer
+   35  kubectl get replicaset -n trainer
+   36  kubectl get pods -n trainer
+   37  kubectl get rs -n trainer
+   38  kubectl scale deployment/app1 --replicas=5 -n trainer
+   39  kubectl get rs -n trainer
+   40  clear
+   41  kubectl delete ns trainer
+   42  kubectl create ns trainer
+   43  kubectl create deployment app1 --image=kharatramesh/k8s_rollaback:webv1.0 -n trainer
+   44  kubectl get deploy -n trainer
+   45  kubectl get rs -n trainer
+   46  kubectl get pod -n trainer
+   47  kubectl rollout history deployment/app1 -n trainer
+   48  kubectl expose deployment/app1 --type=NodePort --port=80 -n trainer
+   49  kubectl get service -n trainer
+   50  kubectl describe deploy app1 -n trainer
+   51  kubectl --record deployment/app1 set image deployment/app1 k8s-rollaback-kjc9m=kharatramesh/k8s_rollaback:webv2.0 -n trainer
+   52  kubectl get rs -n trainer
+   53  kubectl rollout history deployment/app1 -n trainer
+   54  kubectl --record deployment/app1 set image deployment/app1 k8s-rollaback-kjc9m=kharatramesh/k8s_rollaback:webv3.0 -n trainer
+   55  kubectl rollout history deployment/app1 -n trainer
+   56  kubectl get rs -n trainer
+   57  kubectl --record deployment/app1 set image deployment/app1 k8s-rollaback-kjc9m=kharatramesh/k8s_rollaback:webv4.0 -n trainer
+   58  kubectl get rs -n trainer
+   59  kubectl rollout history deployment/app1 -n trainer
+   60  kubectl --record deployment/app1 set image deployment/app1 k8s-rollaback-kjc9m=kharatramesh/vadapavimages:vadapav -n trainer
+   61  kubectl rollout history deployment/app1 -n trainer
+   62  kubectl --record deployment/app1 set image deployment/app1 k8s-rollaback-kjc9m=kharatramesh/vadapavimages:biryani -n trainer
+   63  kubectl rollout history deployment/app1 -n trainer
+   64  kubectl get rs -n trainer
+   65  kubectl --record deployment/app1 set image deployment/app1 k8s-rollaback-kjc9m=kharatramesh/vadapavimages:misalpav -n trainer
+   66  kubectl get rs -n trainer
+   67  kubectl rollout history deployment/app1 -n trainer
+   68  kubectl get pods -n trainer
+   69  kubectl edit deployment app1 -n trainer
+   70  kubectl rollout history deployment/app1 -n trainer
+   71  kubectl --record deployment/app1 set image deployment/app1 k8s-rollaback-kjc9m=kharatramesh/vadapavimages:tea -n trainer
+   72  kubectl rollout history deployment/app1 -n trainer
+   73  kubectl get pods -n trainer
+   74  kubectl --record deployment/app1 set image deployment/app1 k8s-rollaback-kjc9m=kharatramesh/vadapavimages:pizza -n trainer
+   75  kubectl get pods -n trainer
+   76  kubectl --record deployment/app1 set image deployment/app1 k8s-rollaback-kjc9m=kharatramesh/vadapavimages:tea -n trainer
+   77  kubectl get pods -n trainer
+   78  kubectl rollout history deployment/app1 -n trainer
+   79  kubectl rollout undo deployment/app1 --to-revision=5 -n trainer
+   80  kubectl rollout undo deployment/app1 --to-revision=1 -n trainer
+   81  kubectl rollout undo deployment/app1 --to-revision=6 -n trainer
+   82  kubectl rollout undo deployment/app1 --to-revision=2 -n trainer
