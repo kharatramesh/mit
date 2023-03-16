@@ -1,0 +1,105 @@
+[root@ip-172-31-46-113 project1]# cat project1.yaml
+version: "3.9"
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: ./frontend.df
+    image: kharatramesh/mit:frontendmit
+    ports:
+    - "9090:80"
+    depends_on:
+      - backend
+  backend:
+    build:
+      context: .
+      dockerfile: ./backend.df
+    image: kharatramesh/mit:databasemit
+    container_name: database
+    ports:
+    - "3306:3306"
+    environment:
+    - MYSQL_ROOT_PASSWORD=123
+------------------------------------------------------
+
+[root@ip-172-31-46-113 project1]# cat frontend.df
+FROM centos:7
+RUN yum install httpd -y
+RUN yum install yum-utils -y
+RUN yum-config-manager --enable remi-php72 -y
+RUN yum install php php-mcrypt php-cli php-gd php-curl php-mysql php-ldap php-zip php-fileinfo -y
+COPY index.php /var/www/html
+EXPOSE 80
+RUN systemctl enable httpd
+CMD ["httpd", "-D", "FOREGROUND"]
+
+---------------------------------------------------------------
+
+[root@ip-172-31-46-113 project1]# cat backend.df
+FROM mysql
+
+ENV MYSQL_DATABASE gulabjamun
+COPY ./createtable.sql /docker-entrypoint-initdb.d/
+COPY ./insertvalues.sql /docker-entrypoint-initdb.d/
+
+---------------------------------------------------------
+
+[root@ip-172-31-46-113 project1]# cat creattable.sql
+
+create table mit1 (firstname varchar(20), lastname varchar(20));
+create table mit2 (firstname varchar(20), lastname varchar(20));
+create table mit3 (firstname varchar(20), lastname varchar(20));
+create table mit4 (firstname varchar(20), lastname varchar(20));
+create table mit5 (firstname varchar(20), lastname varchar(20));
+
+------------------------------------------------------
+[root@ip-172-31-46-113 project1]# cat insertvalues.sql
+insert into mit1 values ('A1','k1');
+insert into mit1 values ('A2','k2');
+insert into mit2 values ('A1','k1');
+insert into mit3 values ('A1','k1');
+insert into mit4 values ('A1','k1');
+insert into mit5 values ('A1','k1');
+
+------------------------------------------------------------
+  26  sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+   27  chmod a+ /usr/local/bin/docker-compose
+   28  chmod a+x /usr/local/bin/docker-compose
+   29  cp /usr/local/bin/docker-compose /usr/bin/
+   49  docker-compose -f project1.yaml up -d
+   50  history
+   51  vi project1.yaml
+   52  docker ps -a
+   53  docker exec -it database bash
+   54  clear
+   55  ls
+   56  cat backend.df
+   57  cat creattable.sql
+   58  cat insertvalues.sql
+   59  cat project1.yaml
+   60  clear
+   61  touch frontend.df
+   62  vi frontend.df
+   63  vi index.php
+   64  vi project1.yaml
+   65  docker-compose -f project1.yaml up -d
+   66  vi project1.yaml
+   67  docker-compose -f project1.yaml up -d
+   68  docker ps -a
+   69  docker exec -it database bash
+   70  docker-compose -f project1.yaml stop frontend
+   71  docker-compose -f project1.yaml stop backend
+   72  docker-compose -f project1.yaml rm backend
+   73  docker-compose -f project1.yaml rm frontend
+   74  docker ps -a
+   75  clear
+   76  docker images
+   77  docker rmi -f 660988e54bd0 2429f40aad98
+   78  docker images
+   79  docker-compose -f project1.yaml up -d
+   80  docker ps -a
+   81  docker exec -it database bash
+   82  docker login
+   83  docker images
+   84  docker push kharatramesh/mit:frontendmit
+   85  docker push kharatramesh/mit:databasemit
