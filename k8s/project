@@ -1,0 +1,46 @@
+root@master:/trainer# cat backend.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: backend
+  name: backend
+  namespace: trainer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: backend
+    spec:
+      containers:
+      - image: kharatramesh/mit:databasemit
+        name: mit
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: '123'
+
+-----------------------------------------------------------------
+  57  kubectl create deployment backend --image=kharatramesh/mit:databasemit -n trainer --dry-run -o yaml > backend.yaml
+   58  ls
+   59  vi backend.yaml
+   60  kubectl create -f backend.yaml
+   61  kubectl get pods
+   62  kubectl get pods  -n trainer
+   63  vi backend.yaml
+   64  kubectl apply -f backend.yaml
+   65  vi backend.yaml
+   66  kubectl apply -f backend.yaml
+   67  kubectl get pods -n trainer
+   68  kubectl exec -it backend-65c9744469-q7gkj bash -n trainer
+   69  clear
+   70  kubectl get service -n trainer
+  76  kubectl get service -n trainer
+   77  kubectl expose deployment/backend --name=backendservice --type=ClusterIP --port=3306 -n trainer
+   78  kubectl describe service backendservice -n trainer
